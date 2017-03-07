@@ -10,13 +10,6 @@
             <file>file:/C:/Users/ayoub/Documents/NetBeansProjects/taxe_communev1/taxe_commune1/src/java/service/TaxeTrimFacade.java</file>
             <file>file:/C:/Users/ayoub/Documents/NetBeansProjects/taxe_communev1/taxe_commune1/web/device/List.xhtml</file>
         </group>
-        <group>
-            <file>file:/C:/Users/ayoub/Documents/NetBeansProjects/taxe_communev1/taxe_commune1/src/java/service/UserFacade.java</file>
-            <file>file:/C:/Users/ayoub/Documents/NetBeansProjects/taxe_communev1/taxe_commune1/web/index.xhtml</file>
-            <file>file:/C:/Users/ayoub/Documents/NetBeansProjects/taxe_communev1/taxe_commune1/web/template.xhtml</file>
-            <file>file:/C:/Users/ayoub/Documents/NetBeansProjects/taxe_communev1/taxe_commune1/src/java/controler/UserController.java</file>
-            <file>file:/C:/Users/ayoub/Documents/NetBeansProjects/taxe_communev1/taxe_commune1/src/java/service/TaxeTrimFacade.java</file>
-            <file>file:/C:/Users/ayoub/Documents/NetBeansProjects/taxe_communev1/taxe_commune1/web/device/List.xhtml</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

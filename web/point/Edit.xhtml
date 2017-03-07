@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PointEditDlg" widgetVar="PointEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPointTitle}">
+            <h:form id="PointEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pointController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPointLabel_x}" for="x" />
+                        <p:inputText id="x" value="#{pointController.selected.x}" title="#{bundle.EditPointTitle_x}" />
+                        <p:outputLabel value="#{bundle.EditPointLabel_y}" for="y" />
+                        <p:inputText id="y" value="#{pointController.selected.y}" title="#{bundle.EditPointTitle_y}" />
+                        <p:outputLabel value="#{bundle.EditPointLabel_polygone}" for="polygone" />
+                        <p:selectOneMenu id="polygone" value="#{pointController.selected.polygone}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{polygoneController.itemsAvailableSelectOne}"
+                                           var="polygoneItem"
+                                           itemValue="#{polygoneItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPointLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{pointController.selected.id}" title="#{bundle.EditPointTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pointController.update}" value="#{bundle.Save}" update="display,:PointListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PointEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PointEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
