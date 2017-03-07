@@ -12,27 +12,33 @@
             <h:form id="LocaleViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{localeController.selected != null}">
-                        <h:outputText value="#{bundle.ViewLocaleLabel_dernierTrimestrePaiement}"/>
-                        <h:outputText value="#{localeController.selected.dernierTrimestrePaiement}" title="#{bundle.ViewLocaleTitle_dernierTrimestrePaiement}"/>
-                        <h:outputText value="#{bundle.ViewLocaleLabel_dernierAnneePaiement}"/>
-                        <h:outputText value="#{localeController.selected.dernierAnneePaiement}" title="#{bundle.ViewLocaleTitle_dernierAnneePaiement}"/>
-                        <h:outputText value="#{bundle.ViewLocaleLabel_activite}"/>
-                        <h:outputText value="#{localeController.selected.activite}" title="#{bundle.ViewLocaleTitle_activite}"/>
-                        <h:outputText value="#{bundle.ViewLocaleLabel_categorie}"/>
-                        <h:outputText value="#{localeController.selected.categorie}" title="#{bundle.ViewLocaleTitle_categorie}"/>
                        
-                        <h:outputText value="#{bundle.ViewLocaleLabel_rue}"/>
-                        <h:outputText value="#{localeController.selected.rue}" title="#{bundle.ViewLocaleTitle_rue}"/>
-                        <h:outputText value="#{bundle.ViewLocaleLabel_complementAdresse}"/>
-                        <h:outputText value="#{localeController.selected.complementAdresse}" title="#{bundle.ViewLocaleTitle_complementAdresse}"/>
-                        <h:outputText value="#{bundle.ViewLocaleLabel_description}"/>
-                        <h:outputText value="#{localeController.selected.description}" title="#{bundle.ViewLocaleTitle_description}"/>
-                        <h:outputText value="#{bundle.ViewLocaleLabel_proprietaire}"/>
-                        <h:outputText value="#{localeController.selected.proprietaire}" title="#{bundle.ViewLocaleTitle_proprietaire}"/>
-                        <h:outputText value="#{bundle.ViewLocaleLabel_gerant}"/>
-                        <h:outputText value="#{localeController.selected.gerant}" title="#{bundle.ViewLocaleTitle_gerant}"/>
                         <h:outputText value="#{bundle.ViewLocaleLabel_reference}"/>
                         <h:outputText value="#{localeController.selected.reference}" title="#{bundle.ViewLocaleTitle_reference}"/>
+                        
+                        <h:outputText value="#{bundle.ViewLocaleLabel_proprietaire}"/>
+                        <h:outputText value="#{localeController.selected.proprietaire.nom}" title="#{bundle.ViewLocaleTitle_proprietaire}"/>
+                        
+                        <h:outputText value="#{bundle.ViewLocaleLabel_gerant}"/>
+                        <h:outputText value="#{localeController.selected.gerant.nom}" title="#{bundle.ViewLocaleTitle_gerant}"/>
+                        
+                        
+                        <h:outputText value="#{bundle.ViewLocaleLabel_categorie}"/>
+                        <h:outputText value="#{localeController.selected.categorie.nom}" title="#{bundle.ViewLocaleTitle_categorie}"/>
+                       
+                        <h:outputText value="#{bundle.ViewLocaleLabel_rue}"/>
+                        <h:outputText value="#{localeController.selected.rue.nom}" title="#{bundle.ViewLocaleTitle_rue}"/>
+                        
+                        <h:outputText value="#{bundle.ViewLocaleLabel_complementAdresse}"/>
+                        <h:outputText value="#{localeController.selected.complementAdresse}" title="#{bundle.ViewLocaleTitle_complementAdresse}"/>
+                        
+                        <h:outputText value="#{bundle.ViewLocaleLabel_activite}"/>
+                        <h:outputText value="#{localeController.selected.activite}" title="#{bundle.ViewLocaleTitle_activite}"/>
+                        
+                        <h:outputText value="#{bundle.ViewLocaleLabel_description}"/>
+                        <h:outputText value="#{localeController.selected.description}" title="#{bundle.ViewLocaleTitle_description}"/>
+                        
+                        
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="LocaleViewDialog.hide()"/>
                 </h:panelGroup>

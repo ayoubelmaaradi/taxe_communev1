@@ -32,8 +32,8 @@ public class AnnexeAdministratifController implements Serializable {
     }
 
     public AnnexeAdministratif getSelected() {
-        if(selected==null){
-            selected=new AnnexeAdministratif();
+        if (selected == null) {
+            selected = new AnnexeAdministratif();
         }
         return selected;
     }
@@ -61,7 +61,11 @@ public class AnnexeAdministratifController implements Serializable {
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("AnnexeAdministratifCreated"));
         if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
+//            AnnexeAdministratif cloned=new AnnexeAdministratif();
+//            ejbFacade.clone(selected,cloned);
+//            items.add(cloned); 
+// Invalidate list of items to trigger re-query.
+            items.add(ejbFacade.clone(selected));
         }
     }
 

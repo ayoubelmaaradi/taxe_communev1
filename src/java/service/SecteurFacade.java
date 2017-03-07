@@ -28,5 +28,17 @@ public class SecteurFacade extends AbstractFacade<Secteur> {
     public SecteurFacade() {
         super(Secteur.class);
     }
+    public void clone(Secteur secteurSource, Secteur secteurDestaination) {
+        secteurDestaination.setId(secteurSource.getId());
+        secteurDestaination.setAbreviation(secteurSource.getAbreviation());
+        secteurDestaination.setNomSecteur(secteurSource.getNomSecteur());
+
+    }
+
+    public Secteur clone(Secteur secteur) {
+        Secteur cloned = new Secteur();
+        clone(secteur, cloned);
+        return cloned;
+    }
     
 }

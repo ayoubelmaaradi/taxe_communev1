@@ -81,14 +81,9 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListRedevableTitle_nature}"/>
                             </f:facet>
-                            <h:outputText value="#{item.nature}"/>
+                            <h:outputText value="#{item.nature==1? 'Gerant':'Proprietaire'}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListRedevableTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{redevableController.prepareCreate}" update=":RedevableCreateForm" oncomplete="PF('RedevableCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":RedevableViewForm" oncomplete="PF('RedevableViewDialog').show()" disabled="#{empty redevableController.selected}"/>

@@ -16,15 +16,24 @@
                         <p:inputText id="numAbreviation" value="#{quartierController.selected.numAbreviation}" title="#{bundle.EditQuartierTitle_numAbreviation}" />
                         <p:outputLabel value="#{bundle.EditQuartierLabel_nom}" for="nom" />
                         <p:inputText id="nom" value="#{quartierController.selected.nom}" title="#{bundle.EditQuartierTitle_nom}" />
+                        
+                         <p:outputLabel value="secteur" />
+                        <p:selectOneMenu id="secteur"  value="#{quartierController.secteur}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"/>
+                            <f:selectItems value="#{secteurController.items}"
+                                           var="secteurItem" 
+                                           itemValue="#{secteurItem}"/>
+                            <p:ajax process="secteur" listener="#{quartierController.findAnnexs()}" update="annexeAdministratif" />
+                        </p:selectOneMenu>
+                         
                         <p:outputLabel value="#{bundle.EditQuartierLabel_annexeAdministratif}" for="annexeAdministratif" />
                         <p:selectOneMenu id="annexeAdministratif" value="#{quartierController.selected.annexeAdministratif}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{annexeAdministratifController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{quartierController.secteur.annexeAdministratifs}"
                                            var="annexeAdministratifItem"
                                            itemValue="#{annexeAdministratifItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditQuartierLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{quartierController.selected.id}" title="#{bundle.EditQuartierTitle_id}" />
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{quartierController.update}" value="#{bundle.Save}" update="display,:QuartierListForm:datalist,:growl" oncomplete="handleSubmit(args, 'QuartierEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="QuartierEditDialog.hide()"/>

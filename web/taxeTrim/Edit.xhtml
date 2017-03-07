@@ -12,48 +12,67 @@
             <h:form id="TaxeTrimEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{taxeTrimController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_montantRetard}" for="montantRetard" />
-                        <p:inputText id="montantRetard" value="#{taxeTrimController.selected.montantRetard}" title="#{bundle.EditTaxeTrimTitle_montantRetard}" />
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_montant}" for="montant" />
-                        <p:inputText id="montant" value="#{taxeTrimController.selected.montant}" title="#{bundle.EditTaxeTrimTitle_montant}" />
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_datePaiement}" for="datePaiement" />
-                        <p:calendar id="datePaiement" pattern="MM/dd/yyyy" value="#{taxeTrimController.selected.datePaiement}" title="#{bundle.EditTaxeTrimTitle_datePaiement}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_nombreNuit}" for="nombreNuit" />
-                        <p:inputText id="nombreNuit" value="#{taxeTrimController.selected.nombreNuit}" title="#{bundle.EditTaxeTrimTitle_nombreNuit}" />
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_nombreClients}" for="nombreClients" />
-                        <p:inputText id="nombreClients" value="#{taxeTrimController.selected.nombreClients}" title="#{bundle.EditTaxeTrimTitle_nombreClients}" />
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_user}" for="user" />
-                        <p:selectOneMenu id="user" value="#{taxeTrimController.selected.user}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
-                                           var="userItem"
-                                           itemValue="#{userItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_montantTotal}" for="montantTotal" />
-                        <p:inputText id="montantTotal" value="#{taxeTrimController.selected.montantTotal}" title="#{bundle.EditTaxeTrimTitle_montantTotal}" />
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_locale}" for="locale" />
+                        
+                        <p:outputLabel value="CIN"/>
+                        <p:inputText id="cin" value="#{taxeTrimController.cin}">
+                            <p:commandButton actionListener="#{taxeTrimController.findRedevableByCin()}" icon="ui-icon-search" update="locale,redevable"/>
+                        </p:inputText>
+                        <p:outputLabel value="RC"/>
+                        <p:inputText id="rc" value="#{taxeTrimController.rc}">
+                            <p:commandButton actionListener="#{taxeTrimController.findRedevableByRc()}" icon="ui-icon-search" update="locale"/>
+                        </p:inputText>
+                        <p:outputLabel value="#{bundle.CreateTaxeTrimLabel_locale}" for="locale" />
                         <p:selectOneMenu id="locale" value="#{taxeTrimController.selected.locale}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{localeController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{taxeTrimController.redevable.locales}"
                                            var="localeItem"
                                            itemValue="#{localeItem}"/>
+                            <p:ajax update="categorie"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_redevable}" for="redevable" />
-                        <p:selectOneMenu id="redevable" value="#{taxeTrimController.selected.redevable}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{redevableController.itemsAvailableSelectOne}"
-                                           var="redevableItem"
-                                           itemValue="#{redevableItem}"/>
+                        
+                        
+                        <p:outputLabel value="Redevable" for="redevable" />
+                        <p:inputText id="redevable" value="#{taxeTrimController.selected.redevable}" placeholder="#{taxeTrimController.redevable}" disabled="true" title="#{taxeTrimController.redevable}"/>
+                        <p:outputLabel value="categorie" />
+                        <p:inputText id="categorie"  placeholder="#{taxeTrimController.selected.locale.categorie}" title="#{taxeTrimController.selected.locale.categorie}" disabled="true"/>
+                       
+                        <p:outputLabel value="Numero de trimester" for="numeroTrim" />
+                        <p:selectOneMenu id="numeroTrim" value="#{taxeTrimController.selected.numeroTrim}" >
+                            <f:selectItem itemLabel="1" itemValue="1"/>
+                            <f:selectItem itemLabel="2" itemValue="2"/>
+                            <f:selectItem itemLabel="3" itemValue="3"/>
+                            <f:selectItem itemLabel="4" itemValue="4"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_taxeAnnuel}" for="taxeAnnuel" />
-                        <p:selectOneMenu id="taxeAnnuel" value="#{taxeTrimController.selected.taxeAnnuel}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{taxeAnnuelController.itemsAvailableSelectOne}"
-                                           var="taxeAnnuelItem"
-                                           itemValue="#{taxeAnnuelItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditTaxeTrimLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{taxeTrimController.selected.id}" title="#{bundle.EditTaxeTrimTitle_id}" />
+                        
+                        <p:outputLabel value="Annee" />
+                        <p:inputText id="annee" value="#{taxeTrimController.annee}" />
+                        
+                         <p:outputLabel value="#{bundle.CreateTaxeTrimLabel_nombreNuit}" for="nombreNuit" />
+                        <p:inputText id="nombreNuit" value="#{taxeTrimController.selected.nombreNuit}" title="#{bundle.CreateTaxeTrimTitle_nombreNuit}" />
+                       
+                        <p:outputLabel value="#{bundle.CreateTaxeTrimLabel_nombreClients}" for="nombreClients" />
+                        <p:inputText id="nombreClients" value="#{taxeTrimController.selected.nombreClients}" title="#{bundle.CreateTaxeTrimTitle_nombreClients}" />
+                        
+                        <p:outputLabel value="#{bundle.CreateTaxeTrimLabel_datePaiement}" for="datePaiement" />
+                        <p:calendar id="datePaiement" disabled="true" pattern="dd/MM/yyyy" value="#{taxeTrimController.selected.datePaiement}" title="#{bundle.EditTaxeTrimTitle_datePaiement}" />
+                        
+                        <p:outputLabel value="montantTotal" for="montantTotal" />
+                        <p:inputText id="montantTotal"  value="#{taxeTrimController.selected.montantTotal}" />
+                        
+                         <p:outputLabel value="montant" for="montant" />
+                        <p:inputText id="montant"  value="#{taxeTrimController.selected.montant}" />
+                        
+                         <p:outputLabel value="montantRetard" for="montantRetard" />
+                         <p:inputText id="montantRetard"  value="#{taxeTrimController.selected.montantRetard}"  />
+                        
+                         <p:outputLabel value="premierMoisRetard" for="premierMoisRetard" />
+                         <p:inputText id="premierMoisRetard"  value="#{taxeTrimController.selected.premierMoisRetard}" />
+                        
+                         <p:outputLabel value="autresMoisRetard" for="autresMoisRetard" />
+                         <p:inputText id="autresMoisRetard"  value="#{taxeTrimController.selected.autresMoisRetard}"  />
+                        
+                         <p:outputLabel value="nbrMoisRetard" for="nbrMoisRetard" />
+                         <p:inputText id="nbrMoisRetard"  value="#{taxeTrimController.selected.nbrMoisRetard}" />
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{taxeTrimController.update}" value="#{bundle.Save}" update="display,:TaxeTrimListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TaxeTrimEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TaxeTrimEditDialog.hide()"/>

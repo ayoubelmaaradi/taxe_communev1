@@ -38,4 +38,16 @@ public class AnnexeAdministratifFacade extends AbstractFacade<AnnexeAdministrati
         super(AnnexeAdministratif.class);
     }
 
+     public void clone(AnnexeAdministratif annexeAdministratifSource,AnnexeAdministratif annexeAdministratifDestaination){
+        annexeAdministratifDestaination.setAbreviation(annexeAdministratifSource.getAbreviation());
+        annexeAdministratifDestaination.setNom(annexeAdministratifSource.getNom());
+        annexeAdministratifDestaination.setId(annexeAdministratifSource.getId());
+        annexeAdministratifDestaination.setSecteur(annexeAdministratifSource.getSecteur());
+        
+    }
+    public AnnexeAdministratif clone(AnnexeAdministratif annexeAdministratif){
+        AnnexeAdministratif cloned=new AnnexeAdministratif();
+        clone(annexeAdministratif, cloned);
+        return cloned;
+    }
 }

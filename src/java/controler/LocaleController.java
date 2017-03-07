@@ -1,6 +1,7 @@
 package controler;
 
 import bean.AnnexeAdministratif;
+import bean.Categorie;
 import bean.Locale;
 import bean.Quartier;
 import bean.Redevable;
@@ -25,6 +26,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import service.AnnexeAdministratifFacade;
 import service.QuartierFacade;
+import service.RedevableFacade;
 import service.RueFacade;
 
 @Named("localeController")
@@ -39,16 +41,46 @@ public class LocaleController implements Serializable {
     private QuartierFacade quartierFacade;
     @EJB
     private AnnexeAdministratifFacade annexeAdministratifFacade;
+    @EJB
+    private RedevableFacade redevableFacade;
     private List<Locale> items = null;
     private List<Locale> itemsRecherche;
-
     private Locale selected;
+    //create
     private Quartier quartier;
     private AnnexeAdministratif annexeAdministratif;
     private Secteur secteur;
+    //chercher le redevable d'un locale dans la creation $serach locale
+    private Categorie categorie;
+    private String gerantCinRc;
+    private String proprietaireCinRc;
 
+    public void findProprietaireByCinOrRc() {
+        selected.setProprietaire(redevableFacade.findByCinRc(proprietaireCinRc));
+    }
+
+    public void findGerantByCinOrRc() {
+        selected.setGerant(redevableFacade.findByCinRc(gerantCinRc));
+    }
+
+//    public Redevable findRedevable(String str) {
+//        List<Redevable> list = redevableFacade.findByCin(str);
+//        if (!list.isEmpty()) {
+//            return list.get(0);
+//        } else {
+//            list = redevableFacade.findByRc(str);
+//            if (!list.isEmpty()) {
+//                return list.get(0);
+//            } else {
+//                return null;
+//            }
+//        }
+//
+//    }
+
+    //la recherche des locale avec plusieurs criteres
     public void findByCreteria() {
-        itemsRecherche= ejbFacade.findByGerantOrProprietaire(selected.getCategorie(),selected.getProprietaire(),selected.getActivite(),selected.getReference());
+        itemsRecherche = ejbFacade.findByGerantOrProprietaire(categorie, redevableFacade.findByCinRc(proprietaireCinRc), selected.getActivite(), selected.getReference(), redevableFacade.findByCinRc(gerantCinRc));
     }
 
     public void findAnnexs() {
@@ -291,6 +323,30 @@ public class LocaleController implements Serializable {
 
     public void setSecteur(Secteur secteur) {
         this.secteur = secteur;
+    }
+
+    public String getGerantCinRc() {
+        return gerantCinRc;
+    }
+
+    public void setGerantCinRc(String gerantCinRc) {
+        this.gerantCinRc = gerantCinRc;
+    }
+
+    public String getProprietaireCinRc() {
+        return proprietaireCinRc;
+    }
+
+    public void setProprietaireCinRc(String proprietaireCinRc) {
+        this.proprietaireCinRc = proprietaireCinRc;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
 }

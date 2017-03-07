@@ -45,24 +45,26 @@ public class LocaleFacade extends AbstractFacade<Locale> {
         return em.createQuery("SELECT l FROM Locale l WHERE l.proprietaire.rc= '" + redevable + "' OR l.gerant.rc='" + redevable + "'").getResultList();
     }
 
-    public List<Locale> findByGerantOrProprietaire(Categorie categorie, Redevable redevable, String activite, String reference) {
+    public List<Locale> findByGerantOrProprietaire(Categorie categorie, Redevable proprietaire, String activite, String reference, Redevable gerant) {
         String requette = "SELECT l FROM Locale l WHERE 1=1";
 
-        if (!activite.equals("")) {
-            requette += SearchUtil.addConstraint("l", "activite", "=", activite);
+        if (proprietaire != null) {
+            requette += " AND l.proprietaire.id="+proprietaire.getId();
+        }
+        if (gerant != null) {
+            requette += " AND l.gerant.id=" + gerant.getId();
         }
         if (categorie != null) {
-            requette += " AND l.categorie.id=" + categorie.getId();
+            requette += SearchUtil.addConstraint("l", "categorie.id", "=", categorie.getId());
         }
-        if (redevable != null) {
-            requette += " AND l.proprietaire.id=" + redevable.getId();
+        if (!activite.equals("")) {
+            requette += SearchUtil.addConstraint("l", "activite", "=", activite);
         }
         if (!reference.equals("")) {
             requette += SearchUtil.addConstraint("l", "reference", "=", reference);
         }
-
+        System.out.println(requette);
         return em.createQuery(requette).getResultList();
-
     }
 
     public List<Redevable> findByReference(Locale locale) {
@@ -95,6 +97,25 @@ public class LocaleFacade extends AbstractFacade<Locale> {
 
     public LocaleFacade() {
         super(Locale.class);
+    }
+
+    public void clone(Locale localeSource, Locale localeDestaination) {
+        localeDestaination.setId(localeSource.getId());
+        localeDestaination.setActivite(localeSource.getActivite());
+        localeDestaination.setCategorie(localeSource.getCategorie());
+        localeDestaination.setComplementAdresse(localeSource.getComplementAdresse());
+        localeDestaination.setDescription(localeSource.getDescription());
+        localeDestaination.setGerant(localeSource.getGerant());
+        localeDestaination.setProprietaire(localeSource.getProprietaire());
+        localeDestaination.setReference(localeSource.getReference());
+        localeDestaination.setRue(localeSource.getRue());
+
+    }
+
+    public Locale clone(Locale locale) {
+        Locale cloned = new Locale();
+        clone(locale, cloned);
+        return cloned;
     }
 
 }

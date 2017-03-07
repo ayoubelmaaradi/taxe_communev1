@@ -59,12 +59,7 @@
                             </f:facet>
                             <h:outputText value="#{item.nombreClients}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaxeTrimTitle_user}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.user}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTaxeTrimTitle_montantTotal}"/>
@@ -89,12 +84,7 @@
                             </f:facet>
                             <h:outputText value="#{item.taxeAnnuel}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaxeTrimTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
+                       
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{taxeTrimController.prepareCreate}" update=":TaxeTrimCreateForm" oncomplete="PF('TaxeTrimCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TaxeTrimViewForm" oncomplete="PF('TaxeTrimViewDialog').show()" disabled="#{empty taxeTrimController.selected}"/>

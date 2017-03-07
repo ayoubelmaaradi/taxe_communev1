@@ -12,12 +12,13 @@
             <h:form id="SecteurEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{secteurController.selected != null}">
+                        
+                         <p:outputLabel value="#{bundle.EditSecteurLabel_nomSecteur}" for="nomSecteur" />
+                        <p:inputText id="nomSecteur" value="#{secteurController.selected.nomSecteur}" title="#{bundle.EditSecteurTitle_nomSecteur}" />
+                       
                         <p:outputLabel value="#{bundle.EditSecteurLabel_abreviation}" for="abreviation" />
                         <p:inputText id="abreviation" value="#{secteurController.selected.abreviation}" title="#{bundle.EditSecteurTitle_abreviation}" />
-                        <p:outputLabel value="#{bundle.EditSecteurLabel_nomSecteur}" for="nomSecteur" />
-                        <p:inputText id="nomSecteur" value="#{secteurController.selected.nomSecteur}" title="#{bundle.EditSecteurTitle_nomSecteur}" />
-                        <p:outputLabel value="#{bundle.EditSecteurLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{secteurController.selected.id}" title="#{bundle.EditSecteurTitle_id}" />
+                       
                     </p:panelGrid>
                     <p:commandButton actionListener="#{secteurController.update}" value="#{bundle.Save}" update="display,:SecteurListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SecteurEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SecteurEditDialog.hide()"/>

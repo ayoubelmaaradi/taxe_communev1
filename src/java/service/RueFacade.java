@@ -19,7 +19,6 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class RueFacade extends AbstractFacade<Rue> {
 
-    
     @PersistenceContext(unitName = "projet_java_taxPU")
     private EntityManager em;
 
@@ -42,5 +41,19 @@ public class RueFacade extends AbstractFacade<Rue> {
 
     public RueFacade() {
         super(Rue.class);
+    }
+
+    public void clone(Rue rueSource, Rue rueDestaination) {
+        rueDestaination.setId(rueSource.getId());
+        rueDestaination.setQuartier(rueSource.getQuartier());
+        rueDestaination.setNom(rueSource.getNom());
+        rueDestaination.setNumAbreviation(rueSource.getNumAbreviation());
+
+    }
+
+    public Rue clone(Rue rue) {
+        Rue cloned = new Rue();
+        clone(rue, cloned);
+        return cloned;
     }
 }

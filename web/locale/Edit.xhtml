@@ -9,48 +9,95 @@
     <ui:composition>
 
         <p:dialog id="LocaleEditDlg" widgetVar="LocaleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLocaleTitle}">
+           
+            <h:form id="redevableEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{localeController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.CreateLocaleLabel_proprietaire}" for="proprietaire" />
+                        <p:inputText id="proprietaire" value="#{localeController.proprietaireCinRc}">
+                            <p:commandButton actionListener="#{localeController.findProprietaireByCinOrRc()}" icon="ui-icon-search" update=":LocaleEditForm:proprietaire,:LocaleEditForm:save"/>
+                        </p:inputText>
+
+                        <p:outputLabel value="#{bundle.CreateLocaleLabel_gerant}" for="gerant" />
+                        <p:inputText id="gerant" value="#{localeController.gerantCinRc}">
+                            <p:commandButton actionListener="#{localeController.findGerantByCinOrRc()}" icon="ui-icon-search" update=":LocaleEditForm:gerant,:LocaleEditForm:save"/>
+                        </p:inputText>
+
+
+                    </p:panelGrid>
+
+                </h:panelGroup>
+
+            </h:form>
+            <br/><br/><br/>
+            
             <h:form id="LocaleEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{localeController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_dernierTrimestrePaiement}" for="dernierTrimestrePaiement" />
-                        <p:inputText id="dernierTrimestrePaiement" value="#{localeController.selected.dernierTrimestrePaiement}" title="#{bundle.EditLocaleTitle_dernierTrimestrePaiement}" />
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_dernierAnneePaiement}" for="dernierAnneePaiement" />
-                        <p:inputText id="dernierAnneePaiement" value="#{localeController.selected.dernierAnneePaiement}" title="#{bundle.EditLocaleTitle_dernierAnneePaiement}" />
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_activite}" for="activite" />
-                        <p:inputText id="activite" value="#{localeController.selected.activite}" title="#{bundle.EditLocaleTitle_activite}" />
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_categorie}" for="categorie" />
+                        
+                        <p:outputLabel value="#{bundle.CreateLocaleLabel_proprietaire} " for="proprietaire" />
+                        <h:outputText id="proprietaire" value="#{localeController.selected.proprietaire.nom}"/>
+
+                        <p:outputLabel value="#{bundle.CreateLocaleLabel_gerant}" for="gerant" />
+                        <h:outputText id="gerant" value="#{localeController.selected.gerant.nom}" />
+
+
+
+
+                        <p:outputLabel value="#{bundle.CreateLocaleLabel_categorie}" for="categorie" />
                         <p:selectOneMenu id="categorie" value="#{localeController.selected.categorie}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{categorieController.itemsAvailableSelectOne}"
                                            var="categorieItem"
                                            itemValue="#{categorieItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{localeController.selected.id}" title="#{bundle.EditLocaleTitle_id}" />
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_rue}" for="rue" />
+
+                        <p:outputLabel value="#{bundle.CreateLocaleLabel_activite}" for="activite" />
+                        <p:inputText id="activite" value="#{localeController.selected.activite}" title="#{bundle.CreateLocaleTitle_activite}" />
+
+                        <p:outputLabel value="secteur" />
+                        <p:selectOneMenu id="secteur"  value="#{localeController.secteur}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"/>
+                            <f:selectItems value="#{secteurController.items}"
+                                           var="secteurItem" 
+                                           itemValue="#{secteurItem}"/>
+                            <p:ajax process="secteur" listener="#{localeController.findAnnexs()}" update="annexAdministratif,quartier,rue" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="annexAdministratif" />
+                        <p:selectOneMenu id="annexAdministratif"  value="#{localeController.annexeAdministratif}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"/>
+                            <f:selectItems value="#{localeController.secteur.annexeAdministratifs}"
+                                           var="annexAdministratifItem" 
+                                           itemValue="#{annexAdministratifItem}"/>
+                            <p:ajax process="annexAdministratif" listener="#{localeController.findQuartiers()}" update="quartier,rue" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="quartier" />
+                        <p:selectOneMenu id="quartier"  value="#{localeController.quartier}" >
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"/>
+                            <f:selectItems value="#{localeController.annexeAdministratif.quartiers}"
+                                           var="quartierItem" 
+                                           itemValue="#{quartierItem}"/>
+                            <p:ajax process="quartier" listener="#{localeController.findRues()}" update="rue" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateLocaleLabel_rue}" for="rue" />
                         <p:selectOneMenu id="rue" value="#{localeController.selected.rue}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{rueController.itemsAvailableSelectOne}"
+                            <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"/>
+                            <f:selectItems value="#{localeController.quartier.rues}"
                                            var="rueItem"
                                            itemValue="#{rueItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_complementAdresse}" for="complementAdresse" />
-                        <p:inputText id="complementAdresse" value="#{localeController.selected.complementAdresse}" title="#{bundle.EditLocaleTitle_complementAdresse}" />
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_description}" for="description" />
-                        <p:inputText id="description" value="#{localeController.selected.description}" title="#{bundle.EditLocaleTitle_description}" />
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_proprietaire}" for="proprietaire" />
-                        <p:selectOneMenu id="proprietaire" value="#{localeController.selected.proprietaire}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{redevableController.itemsAvailableSelectOne}"
-                                           var="proprietaireItem"
-                                           itemValue="#{proprietaireItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_gerant}" for="gerant" />
-                        <p:inputText id="gerant" value="#{localeController.selected.gerant}" title="#{bundle.EditLocaleTitle_gerant}" />
-                        <p:outputLabel value="#{bundle.EditLocaleLabel_reference}" for="reference" />
-                        <p:inputText id="reference" value="#{localeController.selected.reference}" title="#{bundle.EditLocaleTitle_reference}" />
+
+                        <p:outputLabel value="#{bundle.CreateLocaleLabel_complementAdresse}" for="complementAdresse" />
+                        <p:inputText id="complementAdresse" value="#{localeController.selected.complementAdresse}" title="#{bundle.CreateLocaleTitle_complementAdresse}" />
+                        <p:outputLabel value="#{bundle.CreateLocaleLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{localeController.selected.description}" title="#{bundle.CreateLocaleTitle_description}" />
+
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{localeController.update}" value="#{bundle.Save}" update="display,:LocaleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LocaleEditDialog');"/>
+                    <p:commandButton id="save" actionListener="#{localeController.update}" value="#{bundle.Save}" update="display,:LocaleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LocaleEditDialog');"
+                                      disabled="#{empty localeController.selected.gerant.id and empty localeController.selected.proprietaire.id}"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="LocaleEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

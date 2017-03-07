@@ -12,30 +12,39 @@
             <h:form id="TaxeTrimViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{taxeTrimController.selected != null}">
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_montantRetard}"/>
-                        <h:outputText value="#{taxeTrimController.selected.montantRetard}" title="#{bundle.ViewTaxeTrimTitle_montantRetard}"/>
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_montant}"/>
-                        <h:outputText value="#{taxeTrimController.selected.montant}" title="#{bundle.ViewTaxeTrimTitle_montant}"/>
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_datePaiement}"/>
-                        <h:outputText value="#{taxeTrimController.selected.datePaiement}" title="#{bundle.ViewTaxeTrimTitle_datePaiement}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_nombreNuit}"/>
-                        <h:outputText value="#{taxeTrimController.selected.nombreNuit}" title="#{bundle.ViewTaxeTrimTitle_nombreNuit}"/>
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_nombreClients}"/>
-                        <h:outputText value="#{taxeTrimController.selected.nombreClients}" title="#{bundle.ViewTaxeTrimTitle_nombreClients}"/>
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_user}"/>
-                        <h:outputText value="#{taxeTrimController.selected.user}" title="#{bundle.ViewTaxeTrimTitle_user}"/>
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_montantTotal}"/>
-                        <h:outputText value="#{taxeTrimController.selected.montantTotal}" title="#{bundle.ViewTaxeTrimTitle_montantTotal}"/>
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_locale}"/>
-                        <h:outputText value="#{taxeTrimController.selected.locale}" title="#{bundle.ViewTaxeTrimTitle_locale}"/>
+
+                        <h:outputText value="Numero de trimister"/>
+                        <h:outputText value="#{taxeTrimController.selected.numeroTrim}" />
+
+                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_taxeAnnuel}"/>
+                        <h:outputText value="#{taxeTrimController.selected.taxeAnnuel.annee}" title="#{bundle.ViewTaxeTrimTitle_taxeAnnuel}"/>
+
                         <h:outputText value="#{bundle.ViewTaxeTrimLabel_redevable}"/>
                         <h:outputText value="#{taxeTrimController.selected.redevable}" title="#{bundle.ViewTaxeTrimTitle_redevable}"/>
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_taxeAnnuel}"/>
-                        <h:outputText value="#{taxeTrimController.selected.taxeAnnuel}" title="#{bundle.ViewTaxeTrimTitle_taxeAnnuel}"/>
-                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_id}"/>
-                        <h:outputText value="#{taxeTrimController.selected.id}" title="#{bundle.ViewTaxeTrimTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_locale}"/>
+                        <h:outputText value="#{taxeTrimController.selected.locale}" title="#{bundle.ViewTaxeTrimTitle_locale}"/>
+
+                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_montantTotal}"/>
+                        <h:outputText value="#{taxeTrimController.selected.montantTotal}" title="#{bundle.ViewTaxeTrimTitle_montantTotal}"/>
+
+                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_montant}"/>
+                        <h:outputText value="#{taxeTrimController.selected.montant}" title="#{bundle.ViewTaxeTrimTitle_montant}"/>
+
+                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_montantRetard}"/>
+                        <h:outputText value="#{taxeTrimController.selected.montantRetard}" title="#{bundle.ViewTaxeTrimTitle_montantRetard}"/>
+
+                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_datePaiement}"/>
+                        <h:outputText value="#{taxeTrimController.selected.datePaiement}" title="#{bundle.ViewTaxeTrimTitle_datePaiement}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_nombreNuit}"/>
+                        <h:outputText value="#{taxeTrimController.selected.nombreNuit}" title="#{bundle.ViewTaxeTrimTitle_nombreNuit}"/>
+
+                        <h:outputText value="#{bundle.ViewTaxeTrimLabel_nombreClients}"/>
+                        <h:outputText value="#{taxeTrimController.selected.nombreClients}" title="#{bundle.ViewTaxeTrimTitle_nombreClients}"/>
+
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="TaxeTrimViewDialog.hide()"/>
                 </h:panelGroup>

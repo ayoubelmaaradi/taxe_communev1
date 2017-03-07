@@ -12,14 +12,17 @@
             <h:form id="AnnexeAdministratifViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{annexeAdministratifController.selected != null}">
-                        <h:outputText value="#{bundle.ViewAnnexeAdministratifLabel_secteur}"/>
-                        <h:outputText value="#{annexeAdministratifController.selected.secteur}" title="#{bundle.ViewAnnexeAdministratifTitle_secteur}"/>
+
                         <h:outputText value="#{bundle.ViewAnnexeAdministratifLabel_abreviation}"/>
                         <h:outputText value="#{annexeAdministratifController.selected.abreviation}" title="#{bundle.ViewAnnexeAdministratifTitle_abreviation}"/>
+
                         <h:outputText value="#{bundle.ViewAnnexeAdministratifLabel_nom}"/>
                         <h:outputText value="#{annexeAdministratifController.selected.nom}" title="#{bundle.ViewAnnexeAdministratifTitle_nom}"/>
-                        <h:outputText value="#{bundle.ViewAnnexeAdministratifLabel_id}"/>
-                        <h:outputText value="#{annexeAdministratifController.selected.id}" title="#{bundle.ViewAnnexeAdministratifTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewAnnexeAdministratifLabel_secteur}"/>
+                        <h:outputText value="#{annexeAdministratifController.selected.secteur}" title="#{bundle.ViewAnnexeAdministratifTitle_secteur}"/>
+
+
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="AnnexeAdministratifViewDialog.hide()"/>
                 </h:panelGroup>

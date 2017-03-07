@@ -26,14 +26,39 @@ public class UserController implements Serializable {
     @EJB
     private service.UserFacade ejbFacade;
     private List<User> items = null;
-    private User selected;
+    private User selected=new User();
 
     public UserController() {
     }
+    public String reset(){
+        User loadedUser=ejbFacade.find(selected);
+        
+        if(loadedUser.getEmail().equals(selected.getEmail()) && loadedUser.getTel().equals(selected.getTel())){
+            if(loadedUser.getNom().equals(selected.getTel()) && loadedUser.getPrenom().equals(selected.getPrenom())){
+               return loadedUser.getPassword();
+            }
+        }
+        return "/faces/index";
+    }
+
+    public String connectAsAdmin() {
+        User loadedUser = ejbFacade.find(selected);
+        if (loadedUser.isAdmin()) {
+            String seConnecter = seConnecter();
+            if ("/user/Home".equals(seConnecter)) {
+                JsfUtil.addSuccessMessage("Bienvenue admin");
+                return "/user/Admin";
+            }
+            JsfUtil.addErrorMessage("ERROR Connection");
+            return "/user/AdminAccess";
+        }
+        JsfUtil.addErrorMessage("ERROR Connection user not found");
+        return "/user/AdminAccess";
+    }
 
     public User getSelected() {
-        if(selected==null){
-            selected=new User();
+        if (selected == null) {
+            selected = new User();
         }
         return selected;
     }
@@ -41,18 +66,15 @@ public class UserController implements Serializable {
     public void setSelected(User selected) {
         this.selected = selected;
     }
-
-    public String seConnecter(){
-        Object[] res = ejbFacade.seConnecte(selected);
-        int res1=(int) res[0];
-        if(res1==1){
-            JsfUtil.addSuccessMessage("Welcome!!!!");
-            return "/user/test";
+   // int tentatives = 3;
+    public String seConnecter() {
+        int res1 = ejbFacade.seConnecter(selected);
+        if (res1 == 1) {     
+            return "/user/Home";
         }
-        System.out.println("blokeddddddddddd");
-        JsfUtil.addErrorMessage("user name ou password incorrect");
-        return "/user/Login";
+        return "/index";
     }
+
     protected void setEmbeddableKeys() {
     }
 
@@ -99,10 +121,19 @@ public class UserController implements Serializable {
         if (selected != null) {
             setEmbeddableKeys();
             try {
-                if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
-                } else {
-                    getFacade().remove(selected);
+                if (null == persistAction) {
+                    JsfUtil.addErrorMessage("ERROR");
+                } 
+                else switch (persistAction) {
+                    case CREATE:
+                        getFacade().addUser(selected);
+                        break;
+                    case UPDATE:
+                        getFacade().edit(selected);
+                        break;                        
+                   default:
+                       getFacade().remove(selected);
+                        break;
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {

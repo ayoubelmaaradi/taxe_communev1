@@ -33,7 +33,7 @@ public class Redevable implements Serializable {
     private String cin;
     private String email;
     private String fax;
-    private String Pattente;
+    private String pattente;
     @OneToMany(mappedBy = "proprietaire")
     private List<Locale> locales;
 
@@ -120,11 +120,11 @@ public class Redevable implements Serializable {
     }
 
     public String getPattente() {
-        return Pattente;
+        return pattente;
     }
 
     public void setPattente(String Pattente) {
-        this.Pattente = Pattente;
+        this.pattente = Pattente;
     }
 
     public Long getId() {

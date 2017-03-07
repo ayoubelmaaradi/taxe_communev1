@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+        <link  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"/>
+        <link src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
+
+        <title>Facelet Title</title>
+
+    </h:head>
+    <style>
+        body { padding-top:20px; }
+        .panel-body .btn:not(.btn-block) { width:120px;margin-bottom:10px; }
+    </style>
+    <h:body>
+
+        <div class="container" style="margin: 2%;">
+
+
+            <h:form>
+                <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation" style="margin-top:1%;">
+                    <div class="container-fluid">
+                        <div class="navbar-header"><p:commandLink class="navbar-brand" action="Welcome" value="Fast links"></p:commandLink>      
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse navbar-menubuilder">
+                            <ul class="nav navbar-nav navbar-left">                                                     
+                                <li><p:commandLink action="/user/Home" value="Home"></p:commandLink>                           
+                                </li>
+                                <li><p:commandLink action="/search/Adrressage" value="Adresses"></p:commandLink>                           
+                                </li>
+                               
+                                <li><p:commandLink action="/faces/index" value="Se deconnecter"></p:commandLink>                           
+                                </li>                           
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--admin pannel-->
+                <div class="col-lg-6" style="margin-top: 4%;">
+                    <ul class="nav nav-pills nav-stacked">
+
+                        <li class="active"><a href="#">USER</a></li>
+                        <li><p:commandLink class="btn-success" action="/rue/List" value="rues"></p:commandLink></li>
+                        <li><p:commandLink class="btn-success" action="/quartier/List" value="quartiers"></p:commandLink></li>
+                        <li><p:commandLink class="btn-success" action="/secteur/List" value="secteurs"></p:commandLink></li>
+                        <li><p:commandLink class="btn-success" action="/taxeTrim/List" value="Taxes et Paiments"></p:commandLink></li>
+                        <li><p:commandLink class="btn-success" action="/locale/List" value="Locales"></p:commandLink></li>
+                        <li><p:commandLink class="btn-success" action="/redevable/List" value="Redevables"></p:commandLink></li>
+                        <li><p:commandLink class="btn-success" action="/categorie/List" value="categories"></p:commandLink></li>
+                        <li><p:commandLink class="btn-success" action="/map/Map" value="Maps"></p:commandLink></li>
+                        <li><p:commandLink class="btn-success" action="/charts/grapheCritere" value="Charts"></p:commandLink></li>
+
+                    </ul>
+                    <p:commandLink action="/locale/List" value="link"></p:commandLink>
+                </div>
+                <div class="col-lg-6" style="margin-top: 4%;">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#">ADMIN ACCESS</a> </li>
+                        <li><p:commandLink class="btn-block" action="/user/AdminAccess" value="users"></p:commandLink></li>
+                    <li><p:commandLink class="btn-block btn-warning" action="/journal/AdminAccess" value="Journal"></p:commandLink></li>
+                    <li><p:commandLink class="btn-block" action="/historique/AdminAccess" value="Historique"></p:commandLink></li>
+                    <li><p:commandLink class="btn-block btn-warning" action="/device/AdminAccess" value="Device"></p:commandLink></li>                     
+                    </ul>
+                
+                </div>
+
+                <!--nav bar-->       
+            </h:form>
+        </div>
+
+    </h:body>
+</html>
+

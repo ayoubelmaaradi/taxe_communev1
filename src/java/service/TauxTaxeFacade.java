@@ -28,5 +28,18 @@ public class TauxTaxeFacade extends AbstractFacade<TauxTaxe> {
     public TauxTaxeFacade() {
         super(TauxTaxe.class);
     }
+    public void clone(TauxTaxe tauxTaxeSource, TauxTaxe tauxTaxeDestaination) {
+        tauxTaxeDestaination.setId(tauxTaxeSource.getId());
+        tauxTaxeDestaination.setCategorie(tauxTaxeSource.getCategorie());
+        tauxTaxeDestaination.setTaux(tauxTaxeSource.getTaux());
+
+    }
+
+    public TauxTaxe clone(TauxTaxe tauxTaxe) {
+        TauxTaxe cloned = new TauxTaxe();
+        clone(tauxTaxe, cloned);
+        return cloned;
+    }
+    
     
 }

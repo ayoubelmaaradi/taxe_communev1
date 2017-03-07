@@ -28,5 +28,18 @@ public class TauxTaxeRetardFacade extends AbstractFacade<TauxTaxeRetard> {
     public TauxTaxeRetardFacade() {
         super(TauxTaxeRetard.class);
     }
+     public void clone(TauxTaxeRetard tauxTaxeRetardSource, TauxTaxeRetard tauxTaxeRetardDestaination) {
+        tauxTaxeRetardDestaination.setId(tauxTaxeRetardSource.getId());
+        tauxTaxeRetardDestaination.setCategorie(tauxTaxeRetardSource.getCategorie());
+        tauxTaxeRetardDestaination.setTauxAutreRetard(tauxTaxeRetardSource.getTauxAutreRetard());
+        tauxTaxeRetardDestaination.setTauxPremierRetard(tauxTaxeRetardSource.getTauxPremierRetard());
+
+    }
+
+    public TauxTaxeRetard clone(TauxTaxeRetard tauxTaxeRetard) {
+        TauxTaxeRetard cloned = new TauxTaxeRetard();
+        clone(tauxTaxeRetard, cloned);
+        return cloned;
+    }
     
 }

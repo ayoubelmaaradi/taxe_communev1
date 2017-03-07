@@ -29,4 +29,15 @@ public class CategorieFacade extends AbstractFacade<Categorie> {
         super(Categorie.class);
     }
     
+    
+     public void clone(Categorie categorieSource,Categorie categorieDestaination){
+        categorieDestaination.setId(categorieSource.getId());
+        categorieDestaination.setNom(categorieSource.getNom());
+       
+    }
+    public Categorie clone(Categorie categorie){
+        Categorie cloned=new Categorie();
+        clone(categorie, cloned);
+        return cloned;
+    }
 }

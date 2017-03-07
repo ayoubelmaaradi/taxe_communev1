@@ -28,5 +28,15 @@ public class JournalFacade extends AbstractFacade<Journal> {
     public JournalFacade() {
         super(Journal.class);
     }
-    
+
+    public void clone(Journal journalSource, Journal journalDestaination) {
+        journalDestaination.setId(journalSource.getId());
+
+    }
+
+    public Journal clone(Journal journal) {
+        Journal cloned = new Journal();
+        clone(journal, cloned);
+        return cloned;
+    }
 }

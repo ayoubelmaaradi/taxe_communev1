@@ -21,26 +21,37 @@
             <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
                 <h:form id="menuForm">
                     <p:menubar>
-                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                        <p:submenu label="#{bundle.Maintenance}">
+                        <p:menuitem value="#{bundle.Home}" style="width: 75px" outcome="/user/Home" icon="ui-icon-home"/>
+                        <p:submenu label="Systeme d'adressage" style="width: 150px">
                             <p:menuitem value="AnnexeAdministratif" outcome="/annexeAdministratif/List.xhtml" />
-                            <p:menuitem value="Categorie" outcome="/categorie/List.xhtml" />
-                            <p:menuitem value="Locale" outcome="/locale/List.xhtml" />
                             <p:menuitem value="Quartier" outcome="/quartier/List.xhtml" />
                             <p:menuitem value="Redevable" outcome="/redevable/List.xhtml" />
                             <p:menuitem value="Rue" outcome="/rue/List.xhtml" />
                             <p:menuitem value="Secteur" outcome="/secteur/List.xhtml" />
+                        </p:submenu>
+
+                        <p:submenu label="Service de taxe" style="width: 160px;">
                             <p:menuitem value="TauxTaxe" outcome="/tauxTaxe/List.xhtml" />
                             <p:menuitem value="TauxTaxeRetard" outcome="/tauxTaxeRetard/List.xhtml" />
                             <p:menuitem value="TaxeAnnuel" outcome="/taxeAnnuel/List.xhtml" />
                             <p:menuitem value="TaxeTrim" outcome="/taxeTrim/List.xhtml" />
-                            <p:menuitem value="User" outcome="/user/List.xhtml" />
+                            <p:menuitem value="Categorie" outcome="/categorie/List.xhtml" />
+
                         </p:submenu>
-                        <p:submenu label="Rechercher" icon="ui-icon-search">
-                             <p:menuitem value="Adressage" outcome="/search/Adrressage" icon="ui-icon-newwin"/>
-                            <p:menuitem value="Rechercher un redevable" outcome="/redevable/Search" icon="ui-icon-search"/>
-                            <p:menuitem value="Rechercher un locale" outcome="/locale/Search" icon="ui-icon-search"/>
+                        <p:submenu label="Admin Manager" style="width: 170px;">
+                            <p:menuitem value="User" outcome="/user/AdminAccess.xhtml" />
+                            <p:menuitem value="Journal des actions" outcome="/journal/AdminAccess.xhtml" />
+                            <p:menuitem value="Historiques des connections" outcome="/historique/AdminAccess.xhtml" style="width: 170px;" />
+                            <p:menuitem value="Devices" outcome="/device/AdminAccess.xhtml" />
                         </p:submenu>
+                        <p:submenu label="Recherchers sur :" icon="ui-icon-search" style="width: 150px">
+                            <p:menuitem value="Adressage" outcome="/search/Adrressage" />
+                            <p:menuitem value="redevable" action="/search/SearchRedevable" />
+                            <p:menuitem value="locale" outcome="/search/SearchLocale" />
+                            <p:menuitem value=" taxeTrim " outcome="/search/SearchTaxeTrim.xhtml" style="width:150px;"/>
+                        </p:submenu>
+                        
+                        <p:menuitem value="Locale" outcome="/locale/List.xhtml" style="width:150px;" />
 
                     </p:menubar>
                 </h:form>
@@ -55,7 +66,7 @@
             </p:layoutUnit>
 
         </p:layout>
-    
+
 
     </h:body>
 

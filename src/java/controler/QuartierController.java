@@ -35,33 +35,35 @@ public class QuartierController implements Serializable {
     private Quartier quartier;
     private Secteur secteur;
 
-    
-    
-     public void findAnnexs(){
+    public void findAnnexs() {
         secteur.setAnnexeAdministratifs(annexAdministratifFacade.findBySecteur(secteur));
     }
-     
+
     public AnnexeAdministratifFacade getAnnexAdministratifFacade() {
-        if(annexAdministratifFacade==null){
-        annexAdministratifFacade=new AnnexeAdministratifFacade();
+        if (annexAdministratifFacade == null) {
+            annexAdministratifFacade = new AnnexeAdministratifFacade();
         }
         return annexAdministratifFacade;
     }
 
-    public void detail(){
+    public void detail() {
         secteur.setAnnexeAdministratifs(annexAdministratifFacade.findBySecteur(secteur));
     }
+
     public void setAnnexAdministratifFacade(AnnexeAdministratifFacade annexAdministratifFacade) {
         this.annexAdministratifFacade = annexAdministratifFacade;
     }
 
-    
+    public void initialise(Quartier quartier) {
+        selected = quartier;
+    }
+
     public QuartierController() {
     }
 
     public Quartier getSelected() {
-        if(selected==null){
-            selected=new Quartier();
+        if (selected == null) {
+            selected = new Quartier();
         }
         return selected;
     }
@@ -193,11 +195,9 @@ public class QuartierController implements Serializable {
 
     }
 
-    
-
     public Quartier getQuartier() {
-        if(quartier==null){
-            quartier=new Quartier();
+        if (quartier == null) {
+            quartier = new Quartier();
         }
         return quartier;
     }
@@ -214,5 +214,4 @@ public class QuartierController implements Serializable {
         this.secteur = secteur;
     }
 
-    
 }

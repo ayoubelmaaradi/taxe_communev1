@@ -28,5 +28,19 @@ public class TaxeAnnuelFacade extends AbstractFacade<TaxeAnnuel> {
     public TaxeAnnuelFacade() {
         super(TaxeAnnuel.class);
     }
+     public void clone(TaxeAnnuel taxeAnnuelSource, TaxeAnnuel taxeAnnuelDestaination) {
+        taxeAnnuelDestaination.setId(taxeAnnuelSource.getId());
+        taxeAnnuelDestaination.setAnnee(taxeAnnuelSource.getAnnee());
+        taxeAnnuelDestaination.setLocale(taxeAnnuelSource.getLocale());
+        taxeAnnuelDestaination.setNbrTrimesterPaye(taxeAnnuelSource.getNbrTrimesterPaye());
+        taxeAnnuelDestaination.setTaxeTotale(taxeAnnuelSource.getTaxeTotale());
+
+    }
+
+    public TaxeAnnuel clone(TaxeAnnuel taxeAnnuel) {
+        TaxeAnnuel cloned = new TaxeAnnuel();
+        clone(taxeAnnuel, cloned);
+        return cloned;
+    }
     
 }

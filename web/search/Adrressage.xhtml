@@ -22,7 +22,7 @@
                         <h:form id="SecteurListForm">
                             <p:panel header="#{bundle.ListSecteurTitle}">
                                 <p:dataTable id="datalist" value="#{secteurController.items}" var="item"
-                                             selectionMode="single" selection="#{rueController.secteur}"
+                                             selectionMode="single"
                                              paginator="true"
                                              rowKey="#{item.id}"
                                              rows="10"
@@ -41,7 +41,7 @@
                                         </f:facet>
                                         <h:outputText value="#{item.nomSecteur}"/>
                                     </p:column>
-                                    
+
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
@@ -50,7 +50,7 @@
                                         <p:commandButton id="deleteButton" icon="ui-icon-trash"  actionListener="#{secteurController.destroy}" update="datalist"/>
                                     </p:column>
                                     <f:facet name="footer">
-                                         <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{SecteurController.prepareCreate}" update=":SecteurCreateForm" oncomplete="PF('SecteurCreateDialog').show()"/>
+                                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{SecteurController.prepareCreate}" update=":SecteurCreateForm" oncomplete="PF('SecteurCreateDialog').show()"/>
                                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SecteurEditForm" oncomplete="PF('SecteurEditDialog').show()"/>
                                     </f:facet>
                                 </p:dataTable>
@@ -66,7 +66,7 @@
                                 <p:inputText id="nomAnnex" value="#{rueController.nomAnnex}"></p:inputText>
                                 <p:commandButton actionListener="#{rueController.findAnnexByName()}" update="datalist" icon="ui-icon-search" />
                                 <p:dataTable id="datalist" value="#{rueController.secteur.annexeAdministratifs}" var="item"
-                                             selectionMode="single" selection="#{rueController.annexeAdministratif}"
+                                             selectionMode="single" 
                                              paginator="true"
                                              rowKey="#{item.id}"
                                              rows="10"
@@ -92,15 +92,15 @@
                                         <p:commandButton actionListener="#{rueController.findQuartiers(item)}" icon="ui-icon-search" update=":QuartierListForm:datalist"/>
                                         <p:commandButton id="deleteButton" icon="ui-icon-trash"  actionListener="#{annexeAdministratifController.destroy}" update="datalist"/>
                                     </p:column>
-                                     <f:facet name="footer">
-                                         <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{annexeAdministratifController.prepareCreate}" update=":AnnexeAdministratifCreateForm" oncomplete="PF('AnnexeAdministratifCreateDialog').show()"/>
+                                    <f:facet name="footer">
+                                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{annexeAdministratifController.prepareCreate}" update=":AnnexeAdministratifCreateForm" oncomplete="PF('AnnexeAdministratifCreateDialog').show()"/>
                                         <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AnnexeAdministratifEditForm" oncomplete="PF('AnnexeAdministratifEditDialog').show()"/>
                                     </f:facet>
                                 </p:dataTable>
                             </p:panel>
                         </h:form>
                     </td>
-                
+
                     <td>
 
 
@@ -110,13 +110,13 @@
                                 <p:inputText id="nomQuartier" value="#{rueController.nomQuartier}"></p:inputText>
                                 <p:commandButton actionListener="#{rueController.findQuartierByName()}" update="datalist" icon="ui-icon-search" />
                                 <p:dataTable id="datalist" value="#{rueController.annexeAdministratif.quartiers}" var="item"
-                                             selectionMode="single" selection="#{rueController.quartier}"
+                                             selectionMode="single" 
                                              paginator="true"
                                              rowKey="#{item.id}"
                                              rows="10"
                                              rowsPerPageTemplate="10,20,30,40,50"
                                              >
-
+                                    <p:ajax event="rowSelect" listener="#{quartierController.initialise(item)}"/>
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="#{bundle.ListQuartierTitle_numAbreviation}"/>
@@ -136,9 +136,9 @@
                                         <p:commandButton actionListener="#{rueController.findRues(item)}" icon="ui-icon-search" update=":RueListForm:datalist"/>
                                         <p:commandButton id="deleteButton" icon="ui-icon-trash"  actionListener="#{quartierController.destroy}" update="datalist"/>
                                     </p:column>
-                                     <f:facet name="footer">
-                                         <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{quartierController.prepareCreate}" update=":QuartierCreateForm" oncomplete="PF('QuartierCreateDialog').show()"/>
-                                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":QuartierEditForm" oncomplete="PF('QuartierEditDialog').show()"/>
+                                    <f:facet name="footer">
+                                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{quartierController.prepareCreate}" update=":QuartierCreateForm" oncomplete="PF('QuartierCreateDialog').show()"/>
+                                        <p:commandButton id="editButton" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":QuartierEditForm" oncomplete="PF('QuartierEditDialog').show()"/>
                                     </f:facet>
 
                                 </p:dataTable>
@@ -191,19 +191,19 @@
                     </td>
                 </tr>
             </table>
-           
+
             <ui:include src="/secteur/Create.xhtml"/>
             <ui:include src="/secteur/Edit.xhtml"/>
             <ui:include src="/secteur/View.xhtml"/>
-            
+
             <ui:include src="/annexeAdministratif/Create.xhtml"/>
             <ui:include src="/annexeAdministratif/Edit.xhtml"/>
             <ui:include src="/annexeAdministratif/View.xhtml"/>
-            
+
             <ui:include src="/quartier/Create.xhtml"/>
             <ui:include src="/quartier/Edit.xhtml"/>
             <ui:include src="/quartier/View.xhtml"/>
-            
+
             <ui:include src="/rue/Create.xhtml"/>
             <ui:include src="/rue/Edit.xhtml"/>
             <ui:include src="/rue/View.xhtml"/>

@@ -12,25 +12,38 @@
             <h:form id="RedevableViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{redevableController.selected != null}">
-                        <h:outputText value="#{bundle.ViewRedevableLabel_nom}"/>
-                        <h:outputText value="#{redevableController.selected.nom}" title="#{bundle.ViewRedevableTitle_nom}"/>
-                        <h:outputText value="#{bundle.ViewRedevableLabel_prenom}"/>
-                        <h:outputText value="#{redevableController.selected.prenom}" title="#{bundle.ViewRedevableTitle_prenom}"/>
-                        <h:outputText value="#{bundle.ViewRedevableLabel_nature}"/>
-                        <h:outputText value="#{redevableController.selected.nature}" title="#{bundle.ViewRedevableTitle_nature}"/>
-                        <h:outputText value="#{bundle.ViewRedevableLabel_adresse}"/>
-                        <h:outputText value="#{redevableController.selected.adresse}" title="#{bundle.ViewRedevableTitle_adresse}"/>
+
                         <h:outputText value="#{bundle.ViewRedevableLabel_rc}"/>
                         <h:outputText value="#{redevableController.selected.rc}" title="#{bundle.ViewRedevableTitle_rc}"/>
+
                         <h:outputText value="#{bundle.ViewRedevableLabel_cin}"/>
                         <h:outputText value="#{redevableController.selected.cin}" title="#{bundle.ViewRedevableTitle_cin}"/>
+
+                        <h:outputText value="#{bundle.ViewRedevableLabel_nom}"/>
+                        <h:outputText value="#{redevableController.selected.nom}" title="#{bundle.ViewRedevableTitle_nom}"/>
+
+                        <h:outputText value="#{bundle.ViewRedevableLabel_prenom}"/>
+                        <h:outputText value="#{redevableController.selected.prenom}" title="#{bundle.ViewRedevableTitle_prenom}"/>
+
+                        <h:outputText value="#{bundle.ViewRedevableLabel_nature}"/>
+                        <h:outputText value="#{redevableController.selected.nature==1? 'Gerant':'Proprietaire'}" title="#{bundle.ViewRedevableTitle_nature}"/>
+
+                        <h:outputText value="#{bundle.ViewRedevableLabel_adresse}"/>
+                        <h:outputText value="#{redevableController.selected.adresse}" title="#{bundle.ViewRedevableTitle_adresse}"/>
+
                         <h:outputText value="#{bundle.ViewRedevableLabel_email}"/>
                         <h:outputText value="#{redevableController.selected.email}" title="#{bundle.ViewRedevableTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewRedevableLabel_fax}"/>
-                        <h:outputText value="#{redevableController.selected.fax}" title="#{bundle.ViewRedevableTitle_fax}"/>
+
+
                         <h:outputText value="#{bundle.ViewRedevableLabel_pattente}"/>
                         <h:outputText value="#{redevableController.selected.pattente}" title="#{bundle.ViewRedevableTitle_pattente}"/>
-                       
+
+                        <h:outputText value="#{bundle.ViewRedevableLabel_fax}"/>
+                        <h:outputText value="#{redevableController.selected.fax}" title="#{bundle.ViewRedevableTitle_fax}"/>
+
+                        <h:outputText value="#{bundle.ViewRedevableLabel_pattente}"/>
+                        <h:outputText value="#{redevableController.selected.pattente}" title="#{bundle.ViewRedevableTitle_pattente}"/>
+
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="RedevableViewDialog.hide()"/>
                 </h:panelGroup>

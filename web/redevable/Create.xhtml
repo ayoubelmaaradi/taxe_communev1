@@ -29,7 +29,19 @@
                         <p:outputLabel value="#{bundle.CreateRedevableLabel_cin}" for="cin" />
                         <p:inputText id="cin" value="#{redevableController.selected.cin}" title="#{bundle.CreateRedevableTitle_cin}"/>
                         <p:outputLabel value="#{bundle.CreateRedevableLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{redevableController.selected.email}" title="#{bundle.CreateRedevableTitle_email}" />
+                       
+                         <p:inputText id="email" required="true" label="email" size="40"
+                                     requiredMessage="Please enter your email address."
+                                     validatorMessage="Invalid email format"
+                                     value="#{redevableController.selected.email}">
+
+                            <f:validateRegex
+                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+
+                        </p:inputText>
+                        <p:watermark for="email" value="Email Address *" />
+                        <p:message for="email" />
+                        
                         <p:outputLabel value="#{bundle.CreateRedevableLabel_fax}" for="fax" />
                         <p:inputText id="fax" value="#{redevableController.selected.fax}" title="#{bundle.CreateRedevableTitle_fax}" />
                         <p:outputLabel value="#{bundle.CreateRedevableLabel_pattente}" for="pattente" />

@@ -38,4 +38,17 @@ public class QuartierFacade extends AbstractFacade<Quartier> {
     public QuartierFacade() {
         super(Quartier.class);
     }
+    public void clone(Quartier quartierSource, Quartier quartierDestaination) {
+        quartierDestaination.setId(quartierSource.getId());
+        quartierDestaination.setAnnexeAdministratif(quartierSource.getAnnexeAdministratif());
+        quartierDestaination.setNom(quartierSource.getNom());
+        quartierDestaination.setNumAbreviation(quartierSource.getNumAbreviation());
+
+    }
+
+    public Quartier clone(Quartier quartier) {
+        Quartier cloned = new Quartier();
+        clone(quartier, cloned);
+        return cloned;
+    }
 }

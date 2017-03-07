@@ -21,8 +21,7 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditTauxTaxeLabel_taux}" for="taux" />
                         <p:inputText id="taux" value="#{tauxTaxeController.selected.taux}" title="#{bundle.EditTauxTaxeTitle_taux}" />
-                        <p:outputLabel value="#{bundle.EditTauxTaxeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{tauxTaxeController.selected.id}" title="#{bundle.EditTauxTaxeTitle_id}" />
+                        
                     </p:panelGrid>
                     <p:commandButton actionListener="#{tauxTaxeController.update}" value="#{bundle.Save}" update="display,:TauxTaxeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TauxTaxeEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="TauxTaxeEditDialog.hide()"/>

@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Recherche par différents critères</title>
+    </h:head>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="body">
+            <h:body>
+                <h:form>
+                    <p:fieldset legend="Rechercher des locales par différents critères:">
+                        <p:panelGrid columns="6">
+                            <p:outputLabel value="Proprietaire:" />
+                            <p:inputText id="proprietaire" value="#{localeController.proprietaireCinRc}" />
+                            <p:outputLabel value="Gerant:" />
+                            <p:inputText id="gerant" value="#{localeController.gerantCinRc}" />
+                            <p:outputLabel value="Categorie:"  />
+                            <p:selectOneMenu id="categorie" value="#{localeController.categorie}" >
+                                <f:selectItem itemValue="#{null}" itemLabel="--SELECT--"/>
+                                <f:selectItems value="#{categorieController.items}" itemValue="#{item}" var="item"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Reference:" for="reference" />
+                            <p:inputText id="reference" value="#{localeController.selected.reference}" title="Reference" />
+                            <p:outputLabel value="Activite:" for="activite" />
+                            <p:inputText id="activite" value="#{localeController.selected.activite}" title="Activite" />
+                            <p:commandButton value="Rechecher" actionListener="#{localeController.findByCreteria()}" update="datalist"></p:commandButton>
+                        </p:panelGrid>
+
+                    </p:fieldset>
+
+                    <p:fieldset legend="List:">
+
+                        <p:dataTable value="#{localeController.itemsRecherche}" var="item" id="datalist">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Reference"/>
+                                </f:facet>
+                                <h:outputText value="#{item.reference}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Proprietaire"/>
+                                </f:facet>
+                                <h:outputText value="#{item.proprietaire.nom}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Gerant"/>
+                                </f:facet>
+                                <h:outputText value="#{item.gerant.nom}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Activite"/>
+                                </f:facet>
+                                <h:outputText value="#{item.activite}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Categorie"/>
+                                </f:facet>
+                                <h:outputText value="#{item.categorie.nom}"/>
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Rue"/>
+                                </f:facet>
+                                <h:outputText value="#{item.rue.nom}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="ComplementAdresse"/>
+                                </f:facet>
+                                <h:outputText value="#{item.complementAdresse}"/>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Description"/>
+                                </f:facet>
+                                <h:outputText value="#{item.description}"/>
+                            </p:column>
+
+
+                        </p:dataTable>
+
+                    </p:fieldset>
+                </h:form>
+
+
+            </h:body>
+        </ui:define>
+    </ui:composition>
+</html>
+

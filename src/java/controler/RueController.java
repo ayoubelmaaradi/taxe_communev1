@@ -27,6 +27,7 @@ import service.QuartierFacade;
 @Named("rueController")
 @SessionScoped
 public class RueController implements Serializable {
+
     @EJB
     private service.RueFacade ejbFacade;
 
@@ -36,20 +37,22 @@ public class RueController implements Serializable {
     private AnnexeAdministratifFacade annexeAdministratifFacade;
     private List<Rue> items = null;
     private Rue selected;
+    //pour la page adressage
     private Quartier quartier;
     private AnnexeAdministratif annexeAdministratif;
     private Secteur secteur;
     private String nomAnnex;
     private String nomQuartier;
     private String nomRue;
-    
 
     public void findAnnexByName() {
         secteur.setAnnexeAdministratifs(annexeAdministratifFacade.findByName(nomAnnex));
     }
+
     public void findQuartierByName() {
         annexeAdministratif.setQuartiers(quartierFacade.findByName(nomQuartier));
     }
+
     public void findRueByName() {
         quartier.setRues(ejbFacade.findByName(nomRue));
     }
@@ -82,8 +85,8 @@ public class RueController implements Serializable {
     }
 
     public Rue getSelected() {
-         if(selected==null){
-            selected=new Rue();
+        if (selected == null) {
+            selected = new Rue();
         }
         return selected;
     }
@@ -288,6 +291,4 @@ public class RueController implements Serializable {
         this.nomRue = nomRue;
     }
 
-    
-    
 }

@@ -8,26 +8,39 @@
 
     <ui:composition>
 
-        <p:dialog id="UserCreateDlg" widgetVar="UserCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUserTitle}">
-            <h:form id="UserCreateForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{userController.selected != null}">
-                         <p:outputLabel value="#{bundle.CreateUserLabel_login}" for="login" />
-                        <p:inputText id="login" value="#{userController.selected.login}" title="#{bundle.CreateUserTitle_login}" />
-                        <p:outputLabel value="#{bundle.CreateUserLabel_password}" for="password" />
-                        <p:inputText id="password" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" />
-                        <p:outputLabel value="#{bundle.CreateUserLabel_nom}" for="nom" />
-                        <p:inputText id="nom" value="#{userController.selected.nom}" title="#{bundle.CreateUserTitle_nom}" />
-                        <p:outputLabel value="#{bundle.CreateUserLabel_prenom}" for="prenom" />
-                        <p:inputText id="prenom" value="#{userController.selected.prenom}" title="#{bundle.CreateUserTitle_prenom}" />
-                        
-                       
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{userController.create}" value="#{bundle.Save}" update="display,:UserListForm:datalist,:growl" oncomplete="handleSubmit(args,'UserCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="UserCreateDialog.hide()"/>
-                </h:panelGroup>
-            </h:form>
-        </p:dialog>
 
+        <p:dialog id="UserCreateDlg" widgetVar="UserCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUserTitle}">
+
+            <f:view>
+
+
+             
+                    <h1><h:outputText value="Create User"/></h1>
+                    <p:panelGrid columns="2">
+                        <h:form id="UserCreateForm">
+                            <h:panelGroup id="display">
+                                <p:panelGrid columns="2" rendered="#{userController.selected != null}">
+                                    <p:outputLabel value="#{bundle.CreateUserLabel_login}" for="login" />
+                                    <p:inputText id="login" value="#{userController.selected.login}" title="#{bundle.CreateUserTitle_login}" />
+                                    <p:outputLabel value="#{bundle.CreateUserLabel_password}" for="password" />
+                                    <p:inputText id="password" value="#{userController.selected.password}" title="#{bundle.CreateUserTitle_password}" />
+                                    <p:outputLabel value="#{bundle.CreateUserLabel_nom}" for="nom" />
+                                    <p:inputText id="nom" value="#{userController.selected.nom}" title="#{bundle.CreateUserTitle_nom}" />
+                                    <p:outputLabel value="#{bundle.CreateUserLabel_prenom}" for="prenom" />
+                                    <p:inputText id="prenom" value="#{userController.selected.prenom}" title="#{bundle.CreateUserTitle_prenom}" />
+
+                                    <p:outputLabel value="Email:" for="email" />
+                                    <p:inputText id="email" value="#{userController.selected.email}" title="Email" />
+                                    <p:outputLabel value="Tel:" for="tel" />
+                                    <p:inputText id="tel" value="#{userController.selected.tel}" title="Tel" />                                 
+                                </p:panelGrid>
+                                <p:commandButton actionListener="#{userController.create}" value="#{bundle.Save}" update="display,:UserListForm:datalist,:growl" oncomplete="handleSubmit(args,'UserCreateDialog');"/>
+                                <p:commandButton value="#{bundle.Cancel}" onclick="UserCreateDialog.hide()"/>
+                            </h:panelGroup>
+                        </h:form>
+                    </p:panelGrid>
+            </f:view>
+
+        </p:dialog>
     </ui:composition>
 </html>

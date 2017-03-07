@@ -29,4 +29,14 @@ public class DeviceFacade extends AbstractFacade<Device> {
         super(Device.class);
     }
     
+     public void clone(Device deviceSource,Device deviceDestaination){
+        deviceDestaination.setId(deviceSource.getId());
+       
+    }
+    public Device clone(Device device){
+        Device cloned=new Device();
+        clone(device, cloned);
+        return cloned;
+    }
+    
 }

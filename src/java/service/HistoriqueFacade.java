@@ -28,5 +28,16 @@ public class HistoriqueFacade extends AbstractFacade<Historique> {
     public HistoriqueFacade() {
         super(Historique.class);
     }
-    
+
+    public void clone(Historique historiqueSource, Historique historiqueDestaination) {
+        historiqueDestaination.setId(historiqueSource.getId());
+
+    }
+
+    public Historique clone(Historique historique) {
+        Historique cloned = new Historique();
+        clone(historique, cloned);
+        return cloned;
+    }
+
 }

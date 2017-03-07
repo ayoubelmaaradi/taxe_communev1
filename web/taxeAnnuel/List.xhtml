@@ -29,15 +29,21 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaxeAnnuelTitle_taxeTotale}"/>
+                                <h:outputText value="Annee"/>
                             </f:facet>
-                            <h:outputText value="#{item.taxeTotale}"/>
+                            <h:outputText value="#{item.annee}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTaxeAnnuelTitle_id}"/>
+                                <h:outputText value="#{bundle.ListTaxeAnnuelTitle_taxeTotal}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                            <h:outputText value="#{item.taxeTotale}"/>
+                        </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nombre des trimistres paye"/>
+                            </f:facet>
+                             <h:outputText value="#{item.nbrTrimesterPaye}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{taxeAnnuelController.prepareCreate}" update=":TaxeAnnuelCreateForm" oncomplete="PF('TaxeAnnuelCreateDialog').show()"/>

@@ -17,12 +17,12 @@
         body { padding-top:20px; }
         .panel-body .btn:not(.btn-block) { width:120px;margin-bottom:10px; }
     </style>
-    <h:body>
+    <h:body style="background-color: #e6f2ff;">
 
         <div class="container" style="margin: 2%;">
 
 
-            <h:form>
+            <h:form style="background-color: #e6f2ff;">
                 <div id="custom-bootstrap-menu" class="navbar navbar-default " role="navigation" style="margin-top: 1px;">
                     <div class="container-fluid">
                         <div class="navbar-header"><p:commandLink class="navbar-brand" action="Welcome" value="Fast links"></p:commandLink>      
@@ -31,44 +31,29 @@
                         </div>
                         <div class="collapse navbar-collapse navbar-menubuilder">
                             <ul class="nav navbar-nav navbar-left">                                                     
-                                <li><p:commandLink action="user/Login" value="Home"></p:commandLink>                           
+                                <li><p:commandLink action="/user/Home" value="Home"></p:commandLink>                           
                                 </li>
-                                <li><p:commandLink action="/secteur/List" value="Adresses"></p:commandLink>                           
-                                </li>
-                                <li><p:commandLink action="/taxeTrim/List" value="Services"></p:commandLink>                           
-                                </li>
-                                <li><p:commandLink action="/user/Login" value="Log out"></p:commandLink>                           
+                                <li><p:commandLink action="/search/Adrressage" value="Adresses"></p:commandLink>
+                                </li>                                                         
+                                <li><p:commandLink action="/faces/index" value="Log out"></p:commandLink>                           
                                 </li>                           
                             </ul>
                         </div>
                     </div>
                 </div>
-
-
-
-
                 <!--admin pannel-->
-                <ul class="nav nav-pills nav-stacked">
+          
+                <div class="col-lg-5" style="margin: 10%;">
+                    <ul class="nav nav-pills nav-stacked">
 
-                    <li class="active"><a href="#">Home</a></li>
-
-                    <li><p:commandLink action="/user/List" value="users"></p:commandLink></li>
-                    <li><p:commandLink action="/user/Login" value="home"></p:commandLink></li>
-                    <li><p:commandLink action="/rue/List" value="rues"></p:commandLink></li>
-                    <li><p:commandLink action="/quartier/List" value="quartiers"></p:commandLink></li>
-                    <li><p:commandLink action="/secteur/List" value="secteurs"></p:commandLink></li>
-                    <li><p:commandLink action="/taxeTrim/List" value="Taxes et Paiments"></p:commandLink></li>
-                    <li><p:commandLink action="/locale/List" value="Locales"></p:commandLink></li>
-                    <li><p:commandLink action="/redevable/List" value="Redevables"></p:commandLink></li>
-                    <li><p:commandLink action="/categorie/List" value="categories"></p:commandLink></li>
-
-
-                </ul>
-
-
-
-
-             
+                        <li><p:commandLink class="bg-primary btn-lg btn-block" action="/user/List" value="users"></p:commandLink></li>
+                        <li><p:commandLink class="btn-danger btn-lg btn-block" action="/journal/list" value="Journal"></p:commandLink></li>
+                        <li><p:commandLink class="btn-success btn-lg btn-block" action="/historique/List" value="Historique"></p:commandLink></li>
+                        <li><p:commandLink class="btn-warning btn-lg btn-block" action="/device/List" value="Device"></p:commandLink></li>
+                       
+                    </ul>
+                
+                </div>
 
                 <!--nav bar-->       
             </h:form>
